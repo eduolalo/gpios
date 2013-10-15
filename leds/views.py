@@ -25,7 +25,7 @@ def secuencia(encendido):
     red.stop()
     GPIO.cleanup()
   elif encendido == 1:
-    GPIO.setmode(GPIO.BMC)
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(24, GPIO.OUT)
     GPIO.setup(25, GPIO.OUT)
 
