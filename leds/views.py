@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 def leds(request,action):
   action = int(action)
-  if ((action != 0) and (action != 1) or (action )):
+  if ((action != 0) and (action != 1):
     i = { 'Iniciar secuencia de leds?'}
   elif action == 1:
     i = { 'Iniciando secuencia led'}
