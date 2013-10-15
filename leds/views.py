@@ -11,8 +11,10 @@ def leds(request,action):
     i = { 'Iniciar secuencia de leds?'}
   elif action == 1:
     i = { 'Iniciando secuencia led'}
+    secuencia(action)
   elif action == 0:
     i = { 'Terminando secuencia led'}
+    secuencia(action)
   return render_to_response('leds.html', {
     'msg': i
   })
