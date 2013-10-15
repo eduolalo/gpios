@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Control de GPIOS</title>
+</head>
+<body>
+  {% for it in msg %}
+  <h3>{{ it }}</h3>
+  {% endfor %}
+  <form id="iniciar" method="post" action="">{% csrf_token %}
+    {{ form.as_p }}
+    <br> <br>
+    <button type="submit">Iniciar</button>&nbsp;<button>Terminar</button>
+  </form>
+  {{ msg.request }}
+</body>
+</html>
