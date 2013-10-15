@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 import RPi.GPIO as GPIO
+from time import sleep
 
 def leds(request,action):
   action = int(action)
@@ -14,4 +15,27 @@ def leds(request,action):
     i = { 'Terminando secuencia led'}
   return render_to_response('leds.html', {
     'msg': i
-  }, context_instance=RequestContext(request))
+  })
+
+def secuencia(encendido):
+  if encendido == 0:
+    white.stop()
+    red.stop()
+    GPIO.cleanup()
+  elif encendido == 1:
+    GPIO.setmode(GPIO.BMC)
+    GPIO.setup(24, GPIO.OUT)
+    GPIO.setup(25, GPIO.OUT)
+
+    white = GPIO.PWM(25, 100)
+    red = GPIO.PWM(24,100)
+    rest = 0.02
+    while True:
+      for i in range(0,100):
+        white.ChangeDutyCycle(i)
+        red.ChangeDutyCycle(100 - i)
+        sleep(rest)
+      for i in range(0,101):
+        white.ChangeDutyCycle(100-1)
+        red.ChangeDutyCycle(i)
+        sleep(rest)
